@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="开启" @click="start">
+        <input type="button" value="暂停" @click="end">
+        <div v-text="msg"></div>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"怀疑人生,怎么可能升职",
+                timeId:""
+            },
+            methods: {
+                start(){
+                    this.timeId=setInterval(()=>{
+                        let start=this.msg.substring(0,1);
+                        let end=this.msg.substring(1);
+                        this.msg=end+start;
+                    },200)
+                },
+                end(){
+                    clearInterval(this.timeId);
+                }
+            },
+        })
+        
+    </script>
+</body>
+</html>
