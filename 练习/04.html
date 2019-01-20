@@ -15,8 +15,9 @@
 <body>
     <div id="app">
         id:<input type="text" v-model="m1"> name:
-        <input type="text" v-model="m2">
+        <input type="text" v-model="m2" @keyup.enter="add" v-color>
         <button @click="add">添加</button>
+        <input type="text" v-model="m3"> <button @click="search">搜索</button>
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">Panel heading</div>
@@ -47,17 +48,25 @@
 
 
     </div>
+    <script src="../node_modules/_moment@2.23.0@moment/min/moment.min.js"></script>
     <script>
-        Vue.filter("timepage", function(ctime) {
-            console.log(ctime);
-            var time = ctime;
-            return time
+        Vue.filter("timepage", function(data) {
+            return moment(data).format("YYYY-MM-DD hh:mm:ss");
+
         })
+
+        // Vue.directive("color", {
+        //     bind: function(el) {
+        //         el.style.color = "skyblue"
+        //     }
+        // })
+
         new Vue({
             el: "#app",
             data: {
                 m1: "",
                 m2: "",
+                m3: "",
                 list: [{
                     id: 1,
                     name: "宝马",
@@ -71,6 +80,11 @@
                 }]
             },
             methods: {
+                search() {
+                    if (this.m3 == list.name) {
+
+                    }
+                },
                 add() {
                     this.list.push({
                         id: this.m1,
@@ -78,6 +92,8 @@
                         ctime: new Date(),
                         delit: "删除"
                     })
+                    this.m1 = ""
+                    this.m2 = ""
                 },
                 del(id) {
                     this.list.splice(this.list.findIndex(item => item.id = id), 1)

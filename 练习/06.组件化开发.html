@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .res {
+            background-color: red
+        }
+        
+        .pink {
+            background-color: pink
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <div id="app">
+        <app></app>
+    </div> -->
+
+    <div id="put">
+        <put></put>
+    </div>
+    <script>
+        // Vue.component('app', {
+        //     data: function() {
+        //         return {
+        //             count: 0
+        //         }
+        //     },
+        //     template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+        // })
+
+        Vue.component("put", {
+            data: function() {
+                return {
+                    fun: false
+                }
+            },
+            template: `<button @click="!fun">按钮</button><p class="fun?'res':'pink'">今天天气不错</p>`
+        })
+
+        // new Vue({
+        //     el: "#app",
+        //     data: {
+
+        //     },
+        //     methods: {
+
+        //     },
+        // })
+
+        new Vue({
+            el: "#put",
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
