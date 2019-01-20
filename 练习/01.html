@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-text="msg"></p>
+        <span v-html="msg"></span>
+        <p v-for="item in list">{{item}}</p>
+        <p v-for="(item ,index) in dc">{{item}}</p>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                msg: "喜欢一个人真的很累,邓彩微",
+                data: "真的很喜欢,可是你却把我当需要的时候才会想起的人,当我开始认真的时候,你却走开了,欲拒还迎,天真的我,以为你那也是喜欢,最后才发现那只朋友之间,是你先闯入我的世界也是你先离开,我们好聚好散",
+                list: ["邓彩微", "天真", "幼稚", "变强", "放手"],
+                dc: {
+                    name: "邓彩微",
+                    age: 22,
+                    porptotey: "我曾经喜欢的人"
+                }
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../node_modules/_jquery@3.3.1@jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/_bootstrap@3.3.7@bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/_bootstrap@3.3.7@bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        id:<input type="text" v-model="m1"> name:
+        <input type="text" v-model="m2">
+        <button @click="add">添加</button>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Panel heading</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <th>
+                        <td>id</td>
+                        <td>name</td>
+                        <td>ctime</td>
+                        <td>delit</td>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr v-for="item in list">
+                        <td></td>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.ctime|timepage}}</td>
+                        <td>
+                            <a href="#" @click.prevent="del(item.id)">{{item.delit}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    <script>
+        Vue.filter("timepage", function(ctime) {
+            console.log(ctime);
+            var time = ctime;
+            return time
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                m1: "",
+                m2: "",
+                list: [{
+                    id: 1,
+                    name: "宝马",
+                    ctime: new Date(),
+                    delit: "删除"
+                }, {
+                    id: 2,
+                    name: "奔驰",
+                    ctime: new Date(),
+                    delit: "删除"
+                }]
+            },
+            methods: {
+                add() {
+                    this.list.push({
+                        id: this.m1,
+                        name: this.m2,
+                        ctime: new Date(),
+                        delit: "删除"
+                    })
+                },
+                del(id) {
+                    this.list.splice(this.list.findIndex(item => item.id = id), 1)
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

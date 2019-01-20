@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .res {
+            background-color: red
+        }
+        
+        .pink {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- <h3 :class="[flag?'res':'pink']">样式</h3>
+        <input type="button" @click="put" value="按钮"> -->
+        <h3 :class={res:true,pink:true}>样式</h3>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                flag: true
+            },
+            methods: {
+                put() {
+                    this.flag = !this.flag;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

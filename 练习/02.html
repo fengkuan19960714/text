@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .res {
+            background-color: skyblue
+        }
+        
+        .bgc {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p v-if="msg" :class="msg?'res':''">祝福你吧,你的身边也不缺男生,希望你2019找到属于的的哪一个人吧,也愿我能开始新的一段吧,逃出你的阴影</p>
+        <p v-if="!msg" :class="!msg?'bgc':''">我知道你很受欢迎,一开始我没有喜欢你,但是后来聊得太多了,我也不知道你是怎么想法,既然不喜欢那为什么要搞那些暧昧,可能是我自己多想了吧,当时我的性格即使这样,很容易就满足,可能一句话就有可能就会....,可能你就是喜欢这种暧昧吧,玩</p>
+        <button @click="fun">按钮</button>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                msg: true
+            },
+            methods: {
+                fun() {
+                    this.msg = !this.msg
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        id:<input type="text" v-model="id"> name:
+        <input type="text" v-model="name">
+        <input type="button" value="添加" @click="top">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in list">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.ctime}}</td>
+                    <td>
+                        <a href="" @click.prevent="del(item.id)">{{item.Operation}}</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                id: "",
+                name: "",
+                list: [{
+                    id: 1,
+                    name: "奔驰",
+                    ctime: new Date(),
+                    Operation: "删除"
+                }, {
+                    id: 2,
+                    name: "宝马",
+                    ctime: new Date(),
+                    Operation: "删除"
+                }]
+            },
+            methods: {
+                top() {
+                    var str = {
+                        id: this.id,
+                        name: this.name,
+                        ctime: new Date(),
+                        Operation: "删除"
+                    }
+                    this.list.push(str);
+                },
+                del(id) {
+                    this.list.splice(this.list.findIndex(item => item.id = id), 1)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
