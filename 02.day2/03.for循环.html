@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <p v-for="user in list">{{user.id}}{{user.name}}</p>
+
+    </div>
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                list: [{
+                    id: 1,
+                    name: "梅西",
+                    ids: 2,
+                    name: "阿圭罗"
+                }]
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

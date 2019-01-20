@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/_jquery@3.3.1@jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/_bootstrap@3.3.7@bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../vue.js"></script>
+    <script src="./node_modules/_vue-resource@1.5.1@vue-resource/dist/vue-resource.js"></script>
+    <link rel="stylesheet" href="../node_modules/_bootstrap@3.3.7@bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        id:<input type="text" v-model="m1" v-focus> name:
+        <input type="text" v-model="m2">
+        <button @click="add">添加</button>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">Panel heading</div>
+
+            <table class="table">
+                <thead>
+                    <th>
+                        <td>id</td>
+                        <td>name</td>
+                        <td>ctime</td>
+                        <td>delit</td>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr v-for="item in list">
+                        <td></td>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.ctime}}</td>
+                        <td>
+                            <a href="#" @click.prevent="del(item.id)">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        Vue.directive("focus", {
+            inserted: function(el) {
+                el.focus();
+            }
+        })
+
+
+        new Vue({
+            el: "#app",
+            data: {
+                list: [],
+                m1: "",
+                m2: ""
+            },
+            created() {
+                this.getInfo()
+            },
+            methods: {
+                getInfo() {
+                    this.$http.get("http://vue.lovegf.cn:8899/api/getprodlist").then(result => {
+                        if (result.body.status === 0) {
+                            this.list = result.body.message
+                        } else {
+                            console.log("数据提取失败")
+                        }
+
+                    })
+                },
+                add() {
+                    this.$http.post("http://vue.lovegf.cn:8899/api/addproduct", {
+                        name: `${this.m2}`
+                    }).then(result => {
+                        if (result.body.status === 0) {
+                            this.getInfo()
+                        } else {
+                            console.log("数据获取失败")
+                        }
+
+                    })
+                },
+                del(id) {
+                    this.list.forEach(element => {
+                        var id = element.id;
+                        this.$http.get(`http://vue.lovegf.cn:8899/api/delproduct/${id}`).then(result => {
+                            if (result.body.status === 0) {
+                                this.getInfo()
+                            } else {
+                                console.log("数据获取失败")
+                            }
+                        })
+                    });
+
+                },
+            }
+
+        })
+    </script>
+</body>
+
+</html>
