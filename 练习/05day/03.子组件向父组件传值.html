@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <con @func="textvalue"></con>
+        <br> 评论内容:
+
+        <textarea v-model=" val2 " name=" " id=" " cols="30 " rows="10 ">
+            </textarea>
+
+    </div>
+    <template id="tmp">
+            <div>
+                <input type="text" v-model="val1">
+                <button @click="submit">提交</button>
+            </div>
+    </template>
+    <script>
+        var con = {
+            template: "#tmp",
+            data() {
+                return {
+                    val1: ""
+                }
+            },
+            methods: {
+                submit() {
+                    console.log(this.$emit("func", this.val1))
+                }
+            }
+        }
+        new Vue({
+            el: "#app",
+            data: {
+                val2: "123"
+            },
+            methods: {
+                textvalue(data) {
+                    console.log(data)
+                    this.val2 = data
+                }
+            },
+            components: {
+                con
+            }
+        })
+    </script>
+</body>
+
+</html>

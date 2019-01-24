@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+    <script src="../../node_modules/vue-router/dist/vue-router.min.js"></script>
+    <style>
+        .v-enter,
+        .v-leave {
+            opacity: 0;
+            transform: translateX(80px)
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 1s ease
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <router-link to="/login">登录</router-link>
+        <router-link to="/canginter">注册</router-link>
+
+        <transition mode="out-in">
+            <router-view></router-view>
+        </transition>
+
+    </div>
+    <script>
+        var login = {
+            template: "<h3>登录页</h3>"
+        }
+
+        var canginter = {
+            template: "<h3>分类页</h3>"
+        }
+
+        var router = new VueRouter({
+            routes: [{
+                path: "/login",
+                component: login
+            }, {
+                path: "/canginter",
+                component: canginter
+            }]
+        })
+
+
+        new Vue({
+            el: "#app",
+            router,
+            data: {
+
+            },
+            methods: {
+
+            },
+        })
+
+
+
+
+
+
+
+
+        // var login = {
+        //     template: "<h1>登录</h1>"
+        // }
+
+        // var canginter = {
+        //     template: "<h1>注册</h1>"
+        // }
+        // var router = new VueRouter({
+        //     routes: [{
+        //         path: "/login",
+        //         component: login
+        //     }, {
+        //         path: "/canginter",
+        //         component: canginter
+        //     }]
+        // })
+        // new Vue({
+        //     el: "#app",
+        //     router,
+        //     data: {
+        //         msg: "明天",
+
+        //     },
+        //     methods: {
+
+        //     },
+        // })
+    </script>
+</body>
+
+</html>

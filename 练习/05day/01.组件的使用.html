@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <myname @activework="username"></myname>
+        <br> 输入的值:
+        <textarea name=" " id=" " cols="30 " rows="10 " v-model="tetxvalue"></textarea>
+    </div>
+
+
+    <template id="temp">
+        <div>
+            <input type="text " v-model="username ">
+            <button @click="myclick">提交</button>
+    </div>
+    </template>
+    <script>
+        Vue.component("myname", {
+            template: "#temp",
+            data() {
+                return {
+                    username: {
+                        name: "嫦娥",
+                        age: "未知",
+                        sex: "女"
+                    }
+                }
+            },
+            methods: {
+                myclick() {
+                    console.log(this.username)
+                    this.$emit("activework", this.username)
+                }
+            },
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                tetxvalue: ""
+            },
+            methods: {
+                username(data) {
+                    this.tetxvalue = data;
+                    console.log(data)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

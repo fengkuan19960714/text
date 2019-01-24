@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycoml>
+
+        </mycoml>
+
+    </div>
+    <template id="tmp">
+        <div>
+            <p>你是一个p</p>
+        </div>
+    </template>
+
+    <script>
+        组件1
+        var com1 = Vue.extend({
+            template: "<h3>这是使用extend</h3>"
+        })
+
+        Vue.component("mycoml", com1)
+        组件2
+        Vue.component("mycoml", {
+            template: "<h3>这是使用extend</h3>"
+        })
+
+        // 组件3
+        Vue.component("mycoml", {
+            template: "#tmp"
+        })
+
+        new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

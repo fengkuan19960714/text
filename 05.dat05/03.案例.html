@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../vue.js"></script>
+    <script src="../node_modules/_bootstrap@3.3.7@bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/_bootstrap@3.3.7@bootstrap/dist/css/bootstrap.min.css">
+
+    <style>
+        button {
+            border-radius: 10px;
+            background-color: skyblue;
+            text-align: center;
+            border: none
+        }
+        
+        textarea {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <div id="app">
+        <com></com>
+        <ul class="list-group">
+            <li class="list-group-item" v-for="(item,index) in list" :key="index">
+                <span class="badge">{{item.name}}</span> {{item.content}}
+            </li>
+        </ul>
+    </div>
+
+    <template id="temp">
+        <div>
+            评论人: <input type="text" v-model="username">
+            <br> 评论: <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea>
+            <button @click.pevent="submit">发表评论</button>
+        </div>
+    </template>
+    <script>
+        Vue.component("com", {
+            template: "#temp",
+            data() {
+                return {
+                    content: "",
+                    username: "",
+                    list2: []
+                }
+            },
+            methods: {
+                submit() {
+                    console.log(localStorage.getItem("cmt"));
+                    var value = (localStorage.getItem("cmt") ? localStorage.getItem("cmt") : []).JSON.parse;
+
+                    value.push({
+                        id: Date.now(),
+                        name: username,
+                        content: content
+                    }).JSON.stringify
+                    localStorage.setItem("cmt", value)
+
+                }
+            }
+
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                list: [{
+                    id: Date.now(),
+                    name: "李白",
+                    content: "长风破浪会有时,直挂云帆济沧海"
+                }, {
+                    id: Date.now(),
+                    name: "李白",
+                    content: "长风破浪会有时,直挂云帆济沧海"
+                }, {
+                    id: Date.now(),
+                    name: "李白",
+                    content: "长风破浪会有时,直挂云帆济沧海"
+                }]
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

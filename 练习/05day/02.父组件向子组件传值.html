@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <mylable v-bind:todo="list"></mylable>
+    </div>
+
+    <template id="tmp">
+        <div>
+                <li v-for="item in todo">{{item.name}}----{{item.age}}----{{item.content}}</li>
+        </div> 
+    </template>
+    <script>
+        // 子组件1
+        Vue.component("mylable", {
+            template: "#tmp",
+            // 子组件不能更改props的值
+            props: ["todo"]
+        })
+
+
+        new Vue({
+            el: "#app",
+            data: {
+                list: [{
+                    name: "梅西",
+                    content: "最具有价值的球员,足球天才",
+                    age: 33
+                }, {
+                    name: '罗纳尔多',
+                    content: "皇马,尤文图斯的战神",
+                    age: 31
+                }, {
+                    name: "姆巴佩",
+                    content: "球场上的博尔特",
+                    age: 20
+                }]
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

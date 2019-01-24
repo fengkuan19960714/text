@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <coml v-bind:count="msg"></coml>
+    </div>
+    <script>
+        Vue.component("coml", {
+            props: ["count"],
+            template: "<h3>今天-----{{count}}</h3>"
+        })
+
+        new Vue({
+            el: "#app",
+            data: {
+                msg: "明天"
+            },
+            methods: {
+
+            },
+            components: {
+                coml: {
+                    prpos: ["count"],
+                    template: "<h3>今天-----{{count}}</h3>"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .v-enter {
+            opacity: 0;
+            transform: translateY(300px)
+        }
+        
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(300px)
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 2s ease
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="button" value="切换" @click="btn1">
+        <transition>
+            <h3 v-if="flay">每天都一样</h3>
+        </transition>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                flay: false
+            },
+            methods: {
+                btn1() {
+                    this.flay = !this.flay
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
