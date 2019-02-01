@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>{{msg}}</span>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                msg: "天气良好"
+            },
+            methods: {
+
+            },
+            beforeCreate() {
+                console.log("vue开始创建,data还未加载")
+            },
+            created() {
+                console.log("Vue创建成功,data加载成功")
+            },
+            beforeMount() {
+                console.log("数据开始,数据开始加载")
+            },
+            mounted() {
+                console.log("数据加载成功,页面刷新")
+            },
+            beforeUpdate() {
+                console.log("数据修改,数据修改成功")
+            },
+            updated() {
+                console.log("页面加成,刷新成功")
+            },
+        })
+    </script>
+</body>
+
+</html>

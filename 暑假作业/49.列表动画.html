@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .v-enter {
+            opacity: 0
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 2s
+        }
+        
+        .v-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <transition-group>
+            <div v-for="(item,index) in list" :key="item.id">
+                {{item.id}}----{{item.title}}
+            </div>
+        </transition-group>
+        <button @click="addData">点击增加数据</button>
+    </div>
+    <script>
+        var num = 0;
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                list: []
+            },
+            methods: {
+                addData() {
+                    this.list.push({
+                        id: ++num,
+                        title: "hello world" + num
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

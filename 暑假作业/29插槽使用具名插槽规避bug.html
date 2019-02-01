@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <content>
+            <header slot="header">我是头部</header>
+            <footer slot="footer">我是底部</footer>
+        </content>
+    </div>
+    <script>
+        Vue.component("contents", {
+            template: `
+            <div>
+                <slot name="header"> <h2> 我是默认值 如果不传值 我就用默认值</h2></slot>
+                <div>我是主体内容部分</div>
+                <slot name="footer"></slot>
+            </div>
+            `
+        })
+
+        new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

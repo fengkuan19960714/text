@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child content="hello"></child>
+        <child content="world"></child>
+
+    </div>
+
+    <script>
+        Vue.prototype.busss = new Vue();
+
+        Vue.component("child", {
+            props: {
+                content: String
+            },
+            data() {
+                return {
+                    msg: this.content
+                }
+            },
+            template: "<div @click='handel'>{{msg}}</div>",
+            msthods: {
+                handel() {
+                    this.busss.$emit("change", (val) => {
+                        console.log(val)
+                        this.msg = val
+                    })
+                }
+            }
+        })
+        new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

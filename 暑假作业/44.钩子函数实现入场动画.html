@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="./animate.css"></script> -->
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <transition @before-enter="beforHandel" @enter="enterHandel" @after-enter="afterenterHandel">
+            <div v-show="flag">hello world</div>
+        </transition>
+        <button @click="change">切换动画</button>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                flag: true,
+
+            },
+            methods: {
+                change() {
+                    this.flag = !this.flag
+                },
+                beforHandel(el) {
+                    el.style.color = "red"
+                },
+                enterHandel(el, done) {
+                    setTimeout(() => {
+                        done
+                    }, 4000)
+                },
+                afterenterHandel(el) {
+                    el.style.fontSize = "16px";
+                    el.style.backgroundColor = ""
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        Vue.component("item", {
+            props: {
+                content: {
+                    type: [String, Number],
+                    required: true, //表示父组件必须传值不然会报警
+                    default: "你好",
+                    Validator(val) {
+                        return val.length > 5
+                    }
+                }
+            },
+            template: "<div>{{content}}</div>"
+        })
+        new Vue({
+            el: "#app",
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
